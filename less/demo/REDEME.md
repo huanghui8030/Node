@@ -1,5 +1,6 @@
 ###  Less 学习
 - `[less中文网](http://lesscss.cn)`
+- [less is More,Than CSS](http://www.1024i.com/demo/less/index.html)
 
 ### 注意事项
 - 引用lessjs时，less文件要在前面引用，js在后面，引入方法，如下
