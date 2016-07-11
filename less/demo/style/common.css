@@ -1,0 +1,12 @@
+body {
+  background-color: #ff0000;
+}
+.divId {
+  width: 200px;
+  height: 200px;
+  background-color: #0000ff;
+}
+.divId p {
+  width: 20px;
+  background-color: #ff0000;
+}

@@ -1,0 +1,10 @@
+body{
+	background-color: #fff;
+}
+.divId{
+	width:100px;
+	height:200px;
+	border:1px solid #ccc;
+	background: red;
+
+}
