@@ -34,7 +34,6 @@ npm install npm -g
 除了本章介绍的部分外，NPM还提供了很多功能，package.json里也有很多其它有用的字段。
 除了可以在npmjs.org/doc/查看官方文档外，这里再介绍一些NPM常用命令。
 >* NPM提供了很多命令，例如install和publish，使用npm help可查看所有命令。
->* NPM提供了很多命令，例如install和publish，使用npm help可查看所有命令。
 使用npm help <command>可查看某条命令的详细帮助，例如npm help install。
 >* 在package.json所在目录下使用npm install . -g可先在本地安装当前命令行程序，可用于发布前的本地测试。
  >*使用npm update <package>可以把当前目录下node_modules子目录里边的对应模块更新至最新版本。
@@ -45,7 +44,5 @@ npm install npm -g
 # 实例
 ## test目录下说明
 - filerename.js，解决图片每次命名规则的更换，将所有“_”链接的图片名称改成“-”链接
-- common/impoirt.js，解决html页面代码块的问题，通过页面引入html片段，解析到上一层目录test.html中。
-- 
-- 
+- common/impoirt.js，解决html页面代码块的问题，通过页面引入html片段，解析到上一层目录test.html中。 
 
