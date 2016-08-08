@@ -2,16 +2,16 @@
 
 # node
 
-### 1、安装方法
+## 1、安装方法
 >* 最简单的方法是在 node.js 的官网（https://nodejs.org/en/#download）上通过 the nodejs download section 页面并选择 Mac 下的安装程序，它将在你的机器上安装 Node.js 和 npm (node package manager).
 >* 执行命令 node -v ，显示：v4.4.5 则表示安装成功
 
-### 2、用法
+## 2、用法
 >* 教程：http://www.runoob.com/nodejs/nodejs-tutorial.html
 >>>>>>> 17cc9783c1e009bf5d3a91982ef32b5ad1782b53
 
 
-#NPM使用介绍
+# NPM使用介绍
 
 NPM是随同NodeJS一起安装的包管理工具，能解决NodeJS代码部署上的很多问题，常见的使用场景有以下几种：
 
@@ -30,7 +30,7 @@ npm@2.14.2 /usr/local/lib/node_modules/npm
 npm install npm -g
 
 
-###NPM 常用命令
+## NPM 常用命令
 除了本章介绍的部分外，NPM还提供了很多功能，package.json里也有很多其它有用的字段。
 除了可以在npmjs.org/doc/查看官方文档外，这里再介绍一些NPM常用命令。
 >* NPM提供了很多命令，例如install和publish，使用npm help可查看所有命令。
@@ -42,4 +42,10 @@ npm install npm -g
 >* 使用npm cache clear可以清空NPM本地缓存，用于对付使用相同版本号发布新版本代码的人。
 >* 使用npm unpublish <package>@<version>可以撤销发布自己发布过的某个版本代码。
 
+# 实例
+## test目录下说明
+- filerename.js，解决图片每次命名规则的更换，将所有“_”链接的图片名称改成“-”链接
+- common/impoirt.js，解决html页面代码块的问题，通过页面引入html片段，解析到上一层目录test.html中。
+- 
+- 
 
