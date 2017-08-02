@@ -1,0 +1,39 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="UTF-8">
+    <title>i18next</title>
+   
+</head>
+<body>
+    <a id="btn1" href="#" data-i18n="test">中文</a>
+    <a id="btn2" href="#">姓名</a>
+    <script src="http://t1.chei.com.cn/common/jquery/1.9.1/jquery.min.js"></script>
+    <script src="js/i18next-1.11.2.min.js"></script>  
+<script>
+//http://i18next.github.io/i18next/
+var EnFlag = false;
+var href = window.location.href,
+    str = href.substring(0,href.lastIndexOf('/'));
+str = str.substring(str.lastIndexOf('/')+1);
+if(href.lastIndexOf('lng=en')>-1){
+    EnFlag = true;
+    if(typeof(i18n) !== "undefined"){
+        i18n.init({
+            lng : 'en',
+            getAsync: false ,
+            detectLngQS: 'lng',
+            resGetPath: 'locales/__lng__/special.json'
+        }).done(function(){ 
+            $('[data-i18n]').i18n();
+        });
+    }
+}
+$(function(){
+    var name = i18n.t('name');
+    $('#btn2').text(name);
+})
+
+</script>
+</body>
+</html>

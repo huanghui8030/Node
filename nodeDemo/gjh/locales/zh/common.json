@@ -1,0 +1,6 @@
+{
+    "button": {
+        "save": "保存 {{count}} 几次变化",
+        "save_plural": "保存 {{count}} changes"
+    }
+}

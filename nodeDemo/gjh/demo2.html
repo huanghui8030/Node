@@ -1,0 +1,30 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <meta charset="UTF-8">
+    <title>测试国际化</title>
+    <script src="http://t1.chei.com.cn/common/jquery/1.9.1/jquery.min.js"></script>
+    <script src="js/i18next-1.6.3.min.js"></script>
+</head>
+
+<body>
+    <div style="height: 150px" id='divID'>
+        <span data-i18n='name'>中文</span>
+    </div>
+
+    <script>
+        // $(document).ready(function() {
+         var href = window.location.href;
+         if(href.lastIndexOf('lan=en')>-1){
+             i18n.init({
+                lng : 'en',
+                resGetPath: 'locales/__lng__/special.json'
+            }, function(t) {
+                $('[data-i18n]').i18n();
+            });
+         }
+    </script>
+</body>
+
+</html>
