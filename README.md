@@ -58,3 +58,5 @@ npm install npm -g
 - filerename.js，解决图片每次命名规则的更换，将所有“_”链接的图片名称改成“-”链接
 - common/impoirt.js，解决html页面代码块的问题，通过页面引入html片段，解析到上一层目录test.html中。 
 
+### demo目录下
+主要是博客下面的实例：http://huanghui8030.github.io/node/
