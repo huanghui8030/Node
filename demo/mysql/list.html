@@ -1,0 +1,426 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8">
+    <title>全部列表页面（文件中读取）</title>
+    <meta http-equiv="X-UA-Compatible" content="IE=Edge,chrome=1">
+    <meta name="renderer" content="webkit">
+    <link rel="stylesheet" href="https://t1.chei.com.cn/common/plugins/layui/css/layui.css">
+    <style>
+    /*css初始化*/
+    body{ min-width: 1200px; color:#333333;text-align:left;font:14px/1.8 "Helvetica Neue",Helvetica,"PingFang SC","Microsoft YaHei","Hiragino Sans GB","WenQuanYi Micro Hei",Arial,sans-serif;}
+    a,a:link,a:visited{color:#2484c3; text-decoration:none;}
+    a:hover{color:#63B7EF; text-decoration:underline;}
+    .clearfix:after{content:'\0020'; display:block; clear:both; height:0;}
+    .clearfix{zoom:1;}
+    /*页面布局*/
+    .ch-sticky {
+      height: 100%;
+      position: relative;
+    }
+    .ch-sticky .main-wrapper {
+      min-height: 100%;
+    }
+    .ch-sticky .main-wrapper .container {
+      padding-bottom: 70px;
+    }
+    .ch-sticky .footer-wrapper {
+      margin-top: -70px;
+    }
+    .main-wrapper {
+      width: 100%;
+    }
+    .container {
+      width: 100%;
+      margin: 0 auto;
+    }
+    .footer-wrapper {
+      width: 100%;
+    }
+    /*页面样式*/
+    .fade{
+        display: none;
+    }
+    th{
+        cursor: pointer;
+    }
+    .site-h1 {
+        margin-bottom: 20px;
+        line-height: 60px;
+        padding-bottom: 10px;
+        color: #393D49;
+        border-bottom: 1px solid #eee;
+        font-size: 28px;
+        font-weight: 300;
+        text-align: center;
+    }
+    .search-box{
+        float: left;
+    }
+    a.add-btn{
+        float: right;
+        color: #fff;
+    }
+    a.add-btn:hover{
+        text-decoration: none;
+    }
+    .modal{
+        width: 600px;
+        padding: 20px 0;
+    }
+    .layui-form-label{
+        width: 120px;
+    }
+    .layui-input-block{
+        margin-left: 150px;
+    }
+    .table-con{
+        padding: 0 20px;
+    }
+    .redstart{
+        margin-right: 4px;
+        color: #f04134;
+    }
+    </style>
+</head>
+
+<body class="ch-sticky">
+    <div class="main-wrapper">
+        <h1 class="site-h1">大屏展示全部列表页面</h1>
+        <div class="container">
+            <!--table展示-->
+            <div class="table-con">
+                <!--新增页面-->
+                <div class="clearfix">
+                    <!--<div class="search-box">
+                        <div class="layui-inline">
+                            <input class="layui-input" name="id" id="demoReload" placeholder="请精准输入要搜索的数据" autocomplete="off">
+                        </div>
+                        <button class="layui-btn serach-btn" data-type="reload">搜索</button>
+                    </div>-->
+                    <a class="layui-btn add-btn" href="/add.html">添加页面</a>
+                </div>
+                <table id='table-list' class="layui-table"></table>
+            </div>
+            
+            <!-- Modal -->
+            <div class="modal fade" id="modal-update">
+                <form class="layui-form" method="post" action="updatepage">
+                    <div class="layui-form-item">
+                        <label class="layui-form-label"><span class="redstart">*</span>页面名称</label>
+                        <div class="layui-input-block">
+                            <input class="layui-input" id="name" type="text" name="name" lay-verify="required" autocomplete="off" placeholder="请输入页面名称">
+                        </div>
+                    </div>
+                    <div class="layui-form-item">
+                        <label class="layui-form-label"><span class="redstart">*</span>页面链接</label>
+                        <div class="layui-input-block">
+                            <input class="layui-input" id="url" type="text" name="url" lay-verify="required" autocomplete="off" placeholder="请输入页面链接">
+                        </div>
+                    </div>
+                    <div class="layui-form-item">
+                        <label class="layui-form-label"><span class="redstart">*</span>业务类型</label>
+                        <div class="layui-input-block">
+                            <input type="checkbox" name="businesstype" lay-skin="primary" lay-verify="checkboxone" value="对外服务" title="对外服务">
+                            <input type="checkbox" name="businesstype" lay-skin="primary" lay-verify="checkboxone" value="高考" title="高考">
+                            <input type="checkbox" name="businesstype" lay-skin="primary" lay-verify="checkboxone" value="研招" title="研招">
+                            <input type="checkbox" name="businesstype" lay-skin="primary" lay-verify="checkboxone" value="学籍学历" title="学籍学历">
+                            <input type="checkbox" name="businesstype" lay-skin="primary" lay-verify="checkboxone" value="征兵" title="征兵">
+                            <input type="checkbox" name="businesstype" lay-skin="primary" lay-verify="checkboxone" value="宣传推广" title="宣传推广">
+                            <input type="checkbox" name="businesstype" lay-skin="primary" lay-verify="checkboxone" value="满意度" title="满意度">
+                            <input type="checkbox" name="businesstype" lay-skin="primary" lay-verify="checkboxone" value="就业" title="就业">
+                            <input type="checkbox" name="businesstype" lay-skin="primary" lay-verify="checkboxone" value="其他承接的服务" title="其他承接的服务">
+                            <input type="checkbox" name="businesstype" lay-skin="primary" lay-verify="checkboxone" value="基础设施" title="基础设施">
+                            <input type="checkbox" name="businesstype" lay-skin="primary" lay-verify="checkboxone" value="硬件设备" title="硬件设备">
+                            <input type="checkbox" name="businesstype" lay-skin="primary" lay-verify="checkboxone" value="系统运维" title="系统运维">
+                            <input type="checkbox" name="businesstype" lay-skin="primary" lay-verify="checkboxone" value="数据统计" title="数据统计">
+                        </div>
+                    </div>
+                    <div class="layui-form-item">
+                        <label class="layui-form-label"><span class="redstart">*</span>语种</label>
+                        <div class="layui-input-block">
+                            <input type="radio" name="language" value="中文" title="中文">
+                            <input type="radio" name="language" value="英文" title="英文">
+                        </div>
+                    </div>
+                    <div class="layui-form-item">
+                        <label class="layui-form-label"><span class="redstart">*</span>数据类型</label>
+                        <div class="layui-input-block">
+                            <input type="radio" name="datatype" value="静态" title="静态">
+                            <input type="radio" name="datatype" value="动态" title="动态">
+                        </div>
+                    </div>
+                    <div class="layui-form-item">
+                        <label class="layui-form-label"><span class="redstart">*</span>运行状态</label>
+                        <div class="layui-input-inline">
+                            <select id="runtype" name="runtype" lay-verify="required" lay-filter="runtype">
+                                <option value='正常'>正常</option>
+                                <option value='后台推送'>后台推送</option>
+                                <option value='故障'>故障</option>
+                                <option value='开发中'>开发中</option>
+                            </select>
+                        </div>
+                        <div class="layui-input-inline">
+                            <input class="layui-input layui-hide" id="reason" type="text" name="reason" autocomplete="off" placeholder="请输入故障原因">
+                        </div>
+                    </div>
+                    <div class="layui-form-item">
+                        <label class="layui-form-label">数据维护人</label>
+                        <div class="layui-input-block">
+                            <input class="layui-input" id="dataauthor" type="text" name="dataauthor" autocomplete="off" placeholder="请输入数据维护人">
+                        </div>
+                    </div>
+                    <div class="layui-form-item">
+                        <label class="layui-form-label"><span class="redstart">*</span>对外展示许可</label>
+                        <div class="layui-input-block">
+                            <input type="radio" name="opentype" value="全公开" title="全公开">
+                            <input type="radio" name="opentype" value="禁止对国外来宾公开" title="禁止对国外来宾公开">
+                            <input type="radio" name="opentype" value="仅对国外来宾公开" title="仅对国外来宾公开">
+                        </div>
+                    </div>
+                    <div class="layui-form-item">
+                        <label class="layui-form-label">页面更新人</label>
+                        <div class="layui-input-block">
+                            <input class="layui-input" id="author" type="text" name="author" autocomplete="off" placeholder="请输入页面更新人">
+                        </div>
+                    </div>
+                    <div class="layui-form-item">
+                        <label class="layui-form-label">页面更新记录</label>
+                        <div class="layui-input-block">
+                            <input class="layui-input" id="record" type="text" name="record" autocomplete="off" placeholder="请输入页面更新记录">
+                        </div>
+                    </div>
+                    <div class="layui-form-item">
+                        <label class="layui-form-label">数据更新日期</label>
+                        <div class="layui-input-block">
+                            <input class="layui-input" id="datatime" type="text" name="datatime" id="date" placeholder="请输入数据更新日期" autocomplete="off">
+                        </div>
+                    </div>
+                    <div class="layui-form-item">
+                        <div class="layui-input-block">
+                            <button class="layui-btn" lay-submit="" lay-filter="demo1">修改</button>
+                            <button class="layui-btn layui-btn-primary" onclick="closeAll();">取消</button>
+                        </div>
+                   </div>
+                    <input type="hidden" name='id' id='id'>
+                </form>
+            </div>
+        </div>
+    </div>
+    <div class="footer-wrapper"></div>
+    <script src="http://t1.chei.com.cn/common/jquery/1.9.1/jquery.min.js"></script>
+    <script src="https://t1.chei.com.cn/common/plugins/layui/layui.all.js"></script>
+   
+    <script>
+    $(function() {
+        showTableList();
+        deleteOnly();
+        updateOnly();
+        $("#modal-update").on("hidden", function() {
+            window.location.reload();
+        });
+    });
+    /**渲染form表单
+     * @author mayx
+     */
+    var form,
+        laydate;
+    layui.use(['form', 'laydate'], function(){
+        form = layui.form;
+        laydate = layui.laydate;
+        laydate.render({
+            elem: '#datatime',
+            type:'datetime'
+        });
+        //监听运行状态选项
+        form.on('select(runtype)', function (data) {
+            if(data.value==='故障'){
+                $('input[name=reason]').removeClass('layui-hide');
+            }else{
+                $('input[name=reason]').addClass('layui-hide');
+            }
+        });
+        //自定义校验
+        form.verify({
+            checkboxone: function(value, item){
+                if($('input[name=businesstype]:checked').length < 1){
+                    return '业务类型至少选中一个';
+                }
+            }
+        });
+    });
+    /**显示table格式的列表
+     * @return {null} 返回null
+     * @author huangh@chsi.com.cn 20170525
+     */
+    function showTableList() {
+        var orgData = getTableData(); //需要先获取data
+        var table = layui.table;
+        if (!!Function.prototype.bind) {
+            //执行渲染
+            table.render({
+                elem: '#table-list',//指定原始表格元素选择器（推荐id选择器）
+                //height: 315,//容器高度
+                cols:  [[ //标题栏
+                    {field: 'index', title: '序号', width: 70, sort:true},
+                    {field: 'id', title: '页面ID', width: 140, sort:true},
+                    {field: 'name', title: '页面名称', width: 233, sort:true},
+                    {field: 'url', title: '页面链接', width: 155, sort:true},
+                    {field: 'businesstype', title: '业务类型', width: 120, sort:true},
+                    {field: 'language', title: '语种', width: 70, sort:true},
+                    {field: 'datatype', title: '数据类型', width: 100, sort:true},
+                    {field: 'runtype', title: '运行状态', width: 100, sort:true},
+                    {field: 'opentype', title: '对外展示许可', width: 160, sort:true},
+                    {field: 'updatetime', title: '页面更新时间', width: 170, sort:true},
+                    {field: 'author', title: '页面更新人', width: 120, sort:true},
+                    {field: 'record', title: '页面更新记录', width: 130, sort:true},
+                    {field: 'datatime', title: '数据更新时间', width: 170, sort:true},
+                    {field: 'operateHtml', title: '操作', width: 110}
+                ]], //设置表头
+                data: orgData,
+                page: true
+            });
+        } else {
+            alert('浏览器版本太低，更更换浏览器！');
+        }
+    }
+    /**获取表格数据   
+     * @param  {String} path json文件 
+     * @return {Array}  返回数组格式的数据
+     * @author huangh@chsi.com.cn 20170525
+     */
+    function getTableData(path) {
+        var newData = [];
+        $.ajaxSettings.async = false; //异步请求数据改成同步请求，很重要！
+        $.ajax({
+            type: 'POST',
+            url: '/getlistdata',
+            cache: false,
+            error: function() {
+                alert('加载页面时出错！')
+            },
+            success: function(data, textStatus, request) {
+                //console.log(data)
+                var data = eval('('+data+')');
+                $.each(data, function(index, content) {
+                    var operateHtml = '<a href="javascript:;" class="update" id="update-' + content.id + '">修改</a>&ensp;&ensp;<a href="javascript:;" class="delete" id="delete-' + content.id + '">删除</a>',
+                        pageName = '<a href="http://mis.chsi.com.cn/monitor/'+content.url+'" target="_blank">'+content.name+'</a>';
+                    newData.push({
+                        'index':index + 1,
+                        'id':content.id,
+                        'name':pageName,
+                        'url':content.url,
+                        'businesstype':content.businesstype,
+                        'language':content.language,
+                        'datatype':content.datatype,
+                        'runtype':content.runtype,
+                        'opentype':content.opentype,
+                        'updatetime':content.updatetime,
+                        'author':content.author,
+                        'record':content.record,
+                        'datatime':content.datatime,
+                        'operateHtml':operateHtml
+                    });
+                });
+            }
+        })
+        return newData;
+    }
+    
+    function closeAll(){
+        layer.closeAll();
+        $("#modal-update").hide();
+    }
+
+    function updateOnly() {
+        $('.table-con').on('click','.update',function() {
+            var id = $(this).attr('id').substring(7);
+            $.ajax({
+                type: 'POST',
+                url: '/update',
+                cache: false,
+                data: {
+                    id: id
+                },
+                error: function() {
+                    alert('加载页面时出错！')
+                },
+                success: function(data, textStatus, request) {
+                    var dataJson = eval('(' + data + ')');
+                    console.log(dataJson);
+                    if (id == dataJson.id) {
+                        var $modal = $("#modal-update");
+                        $modal.find('#id').val(dataJson.id)
+                            .end().find('#name').val(dataJson.name)
+                            .end().find('#url').val(dataJson.url)
+                            .end().find('input[name=language][value='+dataJson.language+']').attr("checked",true)
+                            .end().find('input[name=datatype][value='+dataJson.datatype+']').attr("checked",true)
+                            .end().find('#runtype').val(dataJson.runtype)
+                            .end().find('#reason').val(dataJson.reason)
+                            .end().find('#dataauthor').val(dataJson.dataauthor)
+                            .end().find('input[name=opentype][value='+dataJson.opentype+']').attr("checked",true)
+                            .end().find('#author').val(dataJson.author)
+                            .end().find('#record').val(dataJson.record)
+                            .end().find('#datatime').val(dataJson.datatime);
+                        //设置故障原因
+                        if(dataJson.runtype=='故障'){
+                            $modal.find('#reason').removeClass('layui-hide');
+                        }
+                        //设置业务类型
+                        if(dataJson.businesstype!=''){
+                            var businessArr = dataJson.businesstype.split(',');
+                            for(i in businessArr){
+                                 $modal.find('input[name=businesstype][value='+businessArr[i]+']').prop("checked",true);
+                            }
+                        }
+                        form.render();
+                        layer.open({
+                            title: '修改页面属性设置',
+                            type:1,
+                            content: $("#modal-update"),
+                            area:'700px',
+                            cancel: function(index){
+                                closeAll();
+                            }
+                        });
+
+                        form.on('submit(demo1)', function(data){
+                            closeAll();
+                        });
+                    }
+                }
+            });
+        })
+    }
+
+    function deleteOnly() {
+        $('.table-con').on('click','.delete',function() {
+            var $this = $(this);
+            var id = $this.attr('id').substring(7);
+            layer.confirm('确认删除该页面吗？', {
+                btn: ['确定','取消'] //按钮
+            }, function(){
+                $.ajax({
+                    type: 'POST',
+                    url: '/deleteonly',
+                    cache: false,
+                    data: {
+                        id: id
+                    },
+                    error: function() {
+                        alert('加载页面时出错！')
+                    },
+                    success: function(content) {
+                        $this.parents('tr').remove();
+                        showTableList();
+                        layer.msg('删除成功！', {icon: 1});
+                    }
+                });
+            });
+        })
+    }
+    </script>
+</body>
+
+</html>

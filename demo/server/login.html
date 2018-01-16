@@ -1,0 +1,49 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="UTF-8">
+    <title>登录页面_展示平台</title>
+    <link rel="stylesheet" href="https://t1.chei.com.cn/common/plugins/layui/css/layui.css">
+    <style type="text/css">
+        html{
+            background: #011021;
+            height: 100%
+        }
+        body{
+            height: 100%;
+            background: url(../images/index2017/index-bg.png) top center no-repeat;
+            margin: 0;
+            padding:0;
+        }
+        .login-div{width:465px;height: 335px;margin: 0 auto;padding-top:105px;  color:#fff; background: url(../images/index2017/bk.png) 4px 15px no-repeat;}
+        .login-div:hover{background:url(../images/index2017/bk-light.png) -39px -24px no-repeat;}
+        table{margin: 0 auto;}
+        table tr{height: 50px;}
+        .login-btn{width: 182px;background-color: rgba(20,187,235,0.5);}
+    </style>
+</head>
+<body>
+    <div style="padding-top:380px;">
+        <div  class="login-div">  
+            <form name="loginform" id="login-form" method="post" action="loginsubmit">
+                <table>
+                    <tr>
+                        <th>用户名：</th>
+                        <td><input type="text" class="layui-input" name="username" id="username"></td>
+                    </tr>
+                    <tr>
+                        <th>密码：</th>
+                        <td><input type="password" class="layui-input" name="password" id="password"></td> 
+                    </tr>
+                    <tr>
+                        <th>&ensp;</th>
+                        <td>
+                            <input type="submit" class="layui-btn login-btn" name="loginbtn" id='loginBtn' value="登录">
+                        </td>
+                    </tr>
+                </table>
+            </form>
+        </div>
+    </div>
+</body>
+</html>

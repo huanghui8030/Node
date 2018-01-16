@@ -1,0 +1,58 @@
+{
+  "name": "oracledb",
+  "version": "1.13.1",
+  "description": "Oracle Database driver by Oracle Corp.",
+  "license": "Apache-2.0",
+  "homepage": "http://www.oracle.com/technetwork/database/database-technologies/scripting-languages/node_js/",
+  "keywords": [
+    "Oracle",
+    "Database",
+    "official",
+    "DB",
+    "SQL",
+    "JSON",
+    "PL/SQL",
+    "OCI",
+    "API",
+    "client",
+    "library",
+    "driver",
+    "add-on",
+    "extension",
+    "binding",
+    "interface",
+    "adapter",
+    "module"
+  ],
+  "repository": {
+    "type": "git",
+    "url": "git://github.com/oracle/node-oracledb.git"
+  },
+  "dependencies": {
+    "nan": "~2.5.0"
+  },
+  "devDependencies": {
+    "mocha": "^2.4.5",
+    "should": "^8.3.1",
+    "async": "^1.5.0"
+  },
+  "scripts": {
+    "test": "mocha --opts test/opts/mocha.opts",
+    "posttest": "node test/opts/versions.js",
+    "testwindows": "mocha --opts test\\opts\\mocha.opts && npm run posttest"
+  },
+  "engines": {
+    "node": ">=0.10.28"
+  },
+  "maintainers": [
+    {
+      "name": "Oracle Corp."
+    }
+  ],
+  "bugs": {
+    "url": "https://github.com/oracle/node-oracledb/issues"
+  },
+  "main": "./index.js",
+  "_from": "oracledb@1.13.1",
+  "_resolved": "http://registry.npm.taobao.org/oracledb/download/oracledb-1.13.1.tgz"
+}

@@ -1,0 +1,50 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="UTF-8">
+    <title>json格式转为mysql语句</title>
+</head>
+<body>
+    <h3>json格式转为mysql语句</h3>
+    <div id='div'>
+        
+    </div>
+
+    <script src="http://t1.chei.com.cn/common/jquery/1.9.1/jquery.min.js"></script>
+    <script>
+    $(function(){
+        $('#div').html(getTableData('data.json'));
+    })
+        function getTableData(path) {
+            var newData = [];
+            $.ajaxSettings.async = false; //异步请求数据改成同步请求，很重要！
+            $.getJSON(path, function(data) {
+                console.log(data);
+                $.each(data, function(index, jsondata) {
+                    var sql =  "insert into monitor_page_list SET id='" + jsondata.id 
+                            + "',name='" + (jsondata.name||'') 
+                            + "',url='"+ (jsondata.url||'')
+                            + "',businesstype='"+ (jsondata.businesstype ||'')
+                            + "',language='"+ (jsondata.language ||'')
+                            + "',datatype='"+ (jsondata.datatype ||'')
+                            + "',runtype='"+ (jsondata.runtype ||'')
+                            + "',reason='"+ (jsondata.reason ||'')
+                            + "',dataauthor='"+ (jsondata.dataauthor ||'')
+                            + "',opentype='"+ (jsondata.opentype ||'')
+                            + "',author='"+ (jsondata.author ||'')
+                            + "',record='"+ (jsondata.record ||'');
+                    if(jsondata.datatime!=''){
+                        sql += "',datatime='"+ (jsondata.datatime ||'')  ;
+                    }
+                    sql += "';" ;
+                    console.log(sql);
+                    newData.push(sql);
+                });
+            });
+            console.log(newData);
+            return newData;
+
+        }
+    </script>
+</body>
+</html>

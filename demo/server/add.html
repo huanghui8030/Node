@@ -1,0 +1,212 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8">
+    <title>添加页面并设置页面属性_展示平台</title>
+    <meta http-equiv="X-UA-Compatible" content="IE=Edge,chrome=1">
+    <meta name="renderer" content="webkit">
+    <link rel="stylesheet" href="https://t1.chei.com.cn/common/plugins/layui/css/layui.css">
+    <style>
+    /*css初始化*/
+    body{ min-width: 1200px; color:#333333;text-align:left;font:14px/1.8 "Helvetica Neue",Helvetica,"PingFang SC","Microsoft YaHei","Hiragino Sans GB","WenQuanYi Micro Hei",Arial,sans-serif;}
+    a,a:link,a:visited{color:#2484c3; text-decoration:none;}
+    a:hover{color:#63B7EF; text-decoration:underline;}
+    .clearfix:after{content:'\0020'; display:block; clear:both; height:0;}
+    .clearfix{zoom:1;}
+    /*页面布局*/
+    .ch-sticky {
+      height: 100%;
+      position: relative;
+    }
+    .ch-sticky .main-wrapper {
+      min-height: 100%;
+    }
+    .ch-sticky .main-wrapper .container {
+      padding-bottom: 70px;
+    }
+    .ch-sticky .footer-wrapper {
+      margin-top: -70px;
+    }
+    .main-wrapper {
+      width: 100%;
+    }
+    .container {
+      width: 1180px;
+      margin: 0 auto;
+    }
+    .footer-wrapper {
+      width: 100%;
+    }
+    /*页面样式*/
+    .fade{
+        display: none;
+    }
+    .site-h1 {
+        margin-bottom: 20px;
+        line-height: 60px;
+        padding-bottom: 10px;
+        color: #393D49;
+        border-bottom: 1px solid #eee;
+        font-size: 28px;
+        font-weight: 300;
+        text-align: center;
+    }
+    .layui-form-label{
+        width: 120px;
+    }
+    .layui-input-block{
+        margin-left: 150px;
+    }
+    .redstart{
+        margin-right: 4px;
+        color: #f04134;
+    }
+    </style>
+</head>
+<body class="ch-sticky">
+    <div class="main-wrapper">
+        <h1 class="site-h1">页面属性设置</h1>
+        <div class="container">
+            <form class="layui-form" id="form-add" method="post" action="addpage" >
+                <div class="layui-form-item">
+                    <label class="layui-form-label"><span class="redstart">*</span>页面名称</label>
+                    <div class="layui-input-block">
+                        <input type="text" name="name" lay-verify="required" autocomplete="off" placeholder="请输入页面名称" class="layui-input">
+                    </div>
+                </div>
+                <div class="layui-form-item">
+                    <label class="layui-form-label"><span class="redstart">*</span>页面链接</label>
+                    <div class="layui-input-block">
+                        <input type="text" name="url" lay-verify="required" autocomplete="off" placeholder="请输入页面链接" class="layui-input">
+                    </div>
+                </div>
+                <div class="layui-form-item">
+                    <label class="layui-form-label"><span class="redstart">*</span>业务类型</label>
+                    <div class="layui-input-block">
+                        <input type="checkbox" name="businesstype" lay-skin="primary" lay-verify="checkboxone" value="对外服务" title="对外服务">
+                        <input type="checkbox" name="businesstype" lay-skin="primary" lay-verify="checkboxone" value="高考" title="高考">
+                        <input type="checkbox" name="businesstype" lay-skin="primary" lay-verify="checkboxone" value="研招" title="研招">
+                        <input type="checkbox" name="businesstype" lay-skin="primary" lay-verify="checkboxone" value="学籍学历" title="学籍学历">
+                        <input type="checkbox" name="businesstype" lay-skin="primary" lay-verify="checkboxone" value="征兵" title="征兵">
+                        <input type="checkbox" name="businesstype" lay-skin="primary" lay-verify="checkboxone" value="宣传推广" title="宣传推广">
+                        <input type="checkbox" name="businesstype" lay-skin="primary" lay-verify="checkboxone" value="满意度" title="满意度">
+                        <input type="checkbox" name="businesstype" lay-skin="primary" lay-verify="checkboxone" value="就业" title="就业">
+                        <input type="checkbox" name="businesstype" lay-skin="primary" lay-verify="checkboxone" value="其他承接的服务" title="其他承接的服务">
+                        <input type="checkbox" name="businesstype" lay-skin="primary" lay-verify="checkboxone" value="基础设施" title="基础设施">
+                        <input type="checkbox" name="businesstype" lay-skin="primary" lay-verify="checkboxone" value="硬件设备" title="硬件设备">
+                        <input type="checkbox" name="businesstype" lay-skin="primary" lay-verify="checkboxone" value="系统运维" title="系统运维">
+                        <input type="checkbox" name="businesstype" lay-skin="primary" lay-verify="checkboxone" value="数据统计" title="数据统计">
+                    </div>
+                </div>
+                <div class="layui-form-item">
+                    <label class="layui-form-label"><span class="redstart">*</span>语种</label>
+                    <div class="layui-input-block">
+                        <input type="radio" name="language" value="中文" title="中文" checked="">
+                        <input type="radio" name="language" value="英文" title="英文">
+                    </div>
+                </div>
+                <div class="layui-form-item">
+                    <label class="layui-form-label"><span class="redstart">*</span>数据类型</label>
+                    <div class="layui-input-block">
+                        <input type="radio" name="datatype" value="静态" title="静态" checked="">
+                        <input type="radio" name="datatype" value="动态" title="动态">
+                    </div>
+                </div>
+                <div class="layui-form-item">
+                    <label class="layui-form-label"><span class="redstart">*</span>运行状态</label>
+                    <div class="layui-input-inline">
+                        <select name="runtype" lay-verify="required" lay-filter="runtype">
+                            <option value='正常'>正常</option>
+                            <option value='故障'>故障</option>
+                            <option value='开发中'>开发中</option>
+                        </select>
+                    </div>
+                    <div class="layui-input-inline layui-hide">
+                            <select name="reason">
+                                <option value='数据待刷新'>数据待刷新</option>
+                                <option value='数据无法读取'>数据无法读取</option>
+                                <option value='页面卡顿'>页面卡顿</option>
+                                <option value='页面样式出现问题'>页面样式出现问题</option>
+                            </select>
+                        </div>
+                </div>
+                <div class="layui-form-item">
+                    <label class="layui-form-label"><span class="redstart">*</span>对外展示许可</label>
+                    <div class="layui-input-block">
+                        <input type="radio" name="opentype" value="全公开" title="全公开" checked="">
+                        <input type="radio" name="opentype" value="禁止对国外来宾公开" title="禁止对国外来宾公开">
+                        <input type="radio" name="opentype" value="仅对国外来宾公开" title="仅对国外来宾公开">
+                    </div>
+                </div>
+                <div class="layui-form-item">
+                    <label class="layui-form-label">数据来源</label>
+                    <div class="layui-input-inline">
+                        <select name="dataauthor">
+                            <option value=''>请选择数据来源</option>
+                            <option value='数据部'>数据部</option>
+                            <option value='综合部'>综合部</option>
+                            <option value='招生信息部'>招生信息部</option>
+                            <option value='学籍学历部'>学籍学历部</option>
+                            <option value='系统运维部'>系统运维部</option>
+                            <option value='宣传推广部'>宣传推广部</option>
+                            <option value='设计部'>设计部</option>
+                        </select>
+                    </div>
+                </div>
+                <div class="layui-form-item">
+                    <label class="layui-form-label">数据更新日期</label>
+                    <div class="layui-input-block">
+                        <input type="text" name="datatime" id="datatime" placeholder="请输入数据更新日期" autocomplete="off" class="layui-input">
+                    </div>
+                </div>
+                <div class="layui-form-item">
+                    <div class="layui-input-block">
+                        <button class="layui-btn" lay-submit="" lay-filter="demo1">添加</button>
+                        <button class="layui-btn layui-btn-primary" onclick="javascript:window.location.ref='/';">返回</button>
+                    </div>
+               </div>
+            </form>
+        </div>
+    </div>
+    <div class="footer-wrapper"></div>
+    <script src="http://t1.chei.com.cn/common/jquery/1.9.1/jquery.min.js"></script>
+    <script src="https://t1.chei.com.cn/common/plugins/layui/layui.all.js"></script>
+    <script type="text/javascript">
+        /**渲染form表单
+         * @author mayx
+         */
+        layui.use(['form', 'laydate'], function(){
+            var form = layui.form,
+                laydate = layui.laydate;
+            laydate.render({
+                elem: '#datatime',
+                type:'date'
+            });
+            //监听提交
+            form.on('submit(demo1)', function(data){
+                //提交前删除前后空格
+                $('#form-add input[type=text]').each(function() {
+                    var trimVal = $.trim($(this).val());
+                    $(this).val(trimVal);
+                });
+            });
+            //监听运行状态选项
+            form.on('select(runtype)', function (data) {
+                if(data.value==='故障'){
+                    $('select[name=reason]').parent().removeClass('layui-hide');
+                }else{
+                    $('select[name=reason]').parent().addClass('layui-hide');
+                }
+            });
+            //自定义校验
+            form.verify({
+                checkboxone: function(value, item){
+                    if($('input[name=businesstype]:checked').length < 1){
+                        return '业务类型至少选中一个';
+                    }
+                }
+            });
+        });
+    </script>
+</body>
+</html>
