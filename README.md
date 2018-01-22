@@ -41,8 +41,8 @@ npm install npm -g
 - 使用npm unpublish <package>@<version>可以撤销发布自己发布过的某个版本代码。
 
 
-### 已整理到博客中的目录demo
-- demo目录下，主要是博客下面的实例：http://huanghui8030.github.io/node/
+### 已整理到博客中的目录test
+- test目录下，主要是博客下面的实例：http://huanghui8030.github.io/node/
 
 ### 未整理到博客中的内容
 - demo01：node相关的基础知识的学习，都是一些API运用的实例
