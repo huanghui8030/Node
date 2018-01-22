@@ -40,23 +40,20 @@ npm install npm -g
 - 使用npm cache clear可以清空NPM本地缓存，用于对付使用相同版本号发布新版本代码的人。
 - 使用npm unpublish <package>@<version>可以撤销发布自己发布过的某个版本代码。
 
-## 实例
-### css
-- css是通过nodejs来压缩和合并css文件的示例
-### less
-- 通过nodejs将less解析为css文件
-- 将css文件进行压缩和合并
-- 通过即使检测less文件是否更改
 
-### node 
-- node相关的基础知识的学习，都是一些API运用的实例
+### 已整理到博客中的目录demo
+- demo目录下，主要是博客下面的实例：http://huanghui8030.github.io/node/
 
-### node_modules
-- node的包管理文件
-
-### test目录下说明
-- filerename.js，解决图片每次命名规则的更换，将所有“_”链接的图片名称改成“-”链接
-- common/impoirt.js，解决html页面代码块的问题，通过页面引入html片段，解析到上一层目录test.html中。 
-
-### demo目录下
-主要是博客下面的实例：http://huanghui8030.github.io/node/
+### 未整理到博客中的内容
+- demo01：node相关的基础知识的学习，都是一些API运用的实例
+- demo02：通过nodeJs来控制html页面，同时能够及时编译。
+- demo03：通过nodeJs实现国际化配置。
+- demo04：
+    - test目录下说明
+        - filerename.js，解决图片每次命名规则的更换，将所有“_”链接的图片名称改成“-”链接
+        - common/impoirt.js，解决html页面代码块的问题，通过页面引入html片段，解析到上一层目录test.html中。 
+    - css：css是通过nodejs来压缩和合并css文件的示例
+    - less
+        - 通过nodejs将less解析为css文件
+        - 将css文件进行压缩和合并
+        - 通过即使检测less文件是否更改
