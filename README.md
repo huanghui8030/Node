@@ -57,5 +57,4 @@ npm install npm -g
 - test目录下说明：
     - filerename.js，解决图片每次命名规则的更换，将所有“_”链接的图片名称改成“-”链接
     - common/impoirt.js，解决html页面代码块的问题，通过页面引入html片段，解析到上一层目录test.html中。 
-    - [删除文件夹 delete/deletedir.js]()
-    - [删除文件夹里面指定的文件 delete/deletefile.js]()
+    - delete：[Nodejs删除文件夹或者是指定文件](http://huanghui8030.github.io/node/delete.html)

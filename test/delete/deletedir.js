@@ -7,7 +7,7 @@ var fs = require("fs"),
  * @return {Null}   
  * @author huangh 20170123
  */
-function deleteFile(url){
+function deleteDir(url){
     var files = [];
     
     if( fs.existsSync(url) ) {  //判断给定的路径是否存在
@@ -16,10 +16,10 @@ function deleteFile(url){
         files.forEach(function(file,index){
             var curPath = path.join(url,file);
             
-            if(fs.statSync(curPath).isDirectory()) { //同步读取文件夹文件，如果是文件夹，在重复触发函数
-                deleteFile(curPath);
+            if(fs.statSync(curPath).isDirectory()) { //同步读取文件夹文件，如果是文件夹，则函数回调
+                deleteDir(curPath);
             } else {    
-                fs.unlinkSync(curPath);    // 是文件delete file
+                fs.unlinkSync(curPath);    //是指定文件，则删除
             }
             
         });
@@ -31,4 +31,4 @@ function deleteFile(url){
 
 }
 
-deleteFile('/Users/huanghui/Documents/Nodejs/test/deletefile/test/');
+deleteDir('/Users/huanghui/Documents/Nodejs/test/deletefile/test/');

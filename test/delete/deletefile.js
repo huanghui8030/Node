@@ -20,11 +20,11 @@ function deleteFile(url,name){
 
             var curPath = path.join(url,file);
 
-            if(fs.statSync(curPath).isDirectory()) { // 同步读取文件夹文件，如果是文件夹，则函数回调
+            if(fs.statSync(curPath).isDirectory()) { //同步读取文件夹文件，如果是文件夹，则函数回调
                 deleteFile(curPath,name);
             } else {   
                
-                if(file.indexOf(name)>-1){    // 是指定文件，则删除
+                if(file.indexOf(name)>-1){    //是指定文件，则删除
                     fs.unlinkSync(curPath);
                     console.log("删除文件："+curPath);
                 }
