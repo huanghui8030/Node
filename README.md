@@ -49,11 +49,11 @@ npm install npm -g
 - demo02：通过nodeJs来控制html页面，同时能够及时编译。
 - demo03：通过nodeJs实现国际化配置。
 - demo04：
-    - test目录下说明
-        - filerename.js，解决图片每次命名规则的更换，将所有“_”链接的图片名称改成“-”链接
-        - common/impoirt.js，解决html页面代码块的问题，通过页面引入html片段，解析到上一层目录test.html中。 
-    - css：css是通过nodejs来压缩和合并css文件的示例
     - less
         - 通过nodejs将less解析为css文件
         - 将css文件进行压缩和合并
         - 通过即使检测less文件是否更改
+    - css：css是通过nodejs来压缩和合并css文件的示例
+- test目录下说明：
+    - filerename.js，解决图片每次命名规则的更换，将所有“_”链接的图片名称改成“-”链接
+    - common/impoirt.js，解决html页面代码块的问题，通过页面引入html片段，解析到上一层目录test.html中。   
