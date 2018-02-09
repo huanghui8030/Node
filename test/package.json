@@ -1,0 +1,5 @@
+{
+  "devDependencies": {
+    "fs-extra": "^5.0.0"
+  }
+}
